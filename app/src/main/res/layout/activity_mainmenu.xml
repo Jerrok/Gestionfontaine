@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="15pt"
+    tools:layout_marginLeft="15pt"
+    tools:layout_marginRight="15pt">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="437dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:padding="5pt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_marginTop="30pt">
+
+        <Button
+            android:id="@+id/bt_afficher_conso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Afficher les consommations"
+            tools:layout_editor_absoluteX="72dp"
+            tools:layout_editor_absoluteY="95dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10pt" />
+
+        <Switch
+            android:id="@+id/sw_etat_fontaine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Etat fontaine :" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10pt" />
+
+        <Switch
+            android:id="@+id/sw_etat_eclairage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Etat éclairage :" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10pt" />
+
+        <Button
+            android:id="@+id/bt_redemarrage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10pt"
+            android:text="redemarrage" />
+
+        <!--<TextView
+            android:id="@+id/tv_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="test vide" />-->
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

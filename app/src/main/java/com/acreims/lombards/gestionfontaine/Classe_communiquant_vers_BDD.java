@@ -21,10 +21,16 @@ public class Classe_communiquant_vers_BDD implements Runnable{
     private  String resultat_identifiant = "";
     private  String resultat_nom_str = "";
     private  String resulat_passwd_str = "";
+    public  String etat_pompe_str = "";
+    public  String etat_eclairage_str = "";
     private  boolean resultat_nom;
     private  boolean resultat_passwd;
 
+
+
     private activity_graph act = new activity_graph();
+
+    private activity_mainmenu main = new activity_mainmenu();
 
     // Création d'objets
     private Statement stmt;
@@ -43,9 +49,12 @@ public class Classe_communiquant_vers_BDD implements Runnable{
         return resultat_identifiant;
     }
 
-
-//    public String getResultat_requete_sql(){
-//        return resultat_requete_sql;
+//    public String getEtat_pompe_str() {
+//        return etat_pompe_str;
+//    }
+//
+//    public String getEtat_eclairage_str() {
+//        return etat_eclairage_str;
 //    }
 
     // Méthode pour rassembler les données pour la connexion à la BDD
@@ -64,6 +73,8 @@ public class Classe_communiquant_vers_BDD implements Runnable{
         try {
 
             act.setLienGraphToSGBD(this);
+            main.setLienMenuToSGBD(this);
+
 
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url, "v-vaudey", "fontaine");
@@ -100,13 +111,23 @@ public class Classe_communiquant_vers_BDD implements Runnable{
             e.printStackTrace();
         }
 
+        voir_etat_pompe_eclairage();
         voir_donnees_regulateur();
 
     }
 
-//    public boolean voir_etat_pompe_eclairage(){
-//
-//    }
+    private void voir_etat_pompe_eclairage(){
+        String query = "SELECT `etat_pompe`,`etat_eclairage` FROM `etat_fontaine`";
+        try {
+            rs = stmt.executeQuery(query);
+            while (rs.next()){
+                etat_pompe_str = rs.getString("etat_pompe");
+                etat_eclairage_str = rs.getString("etat_eclairage");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void voir_donnees_regulateur(){
 
@@ -114,13 +135,8 @@ public class Classe_communiquant_vers_BDD implements Runnable{
         int tension, battery_current, max_power_today;
         String date, datememo="";
         String[]dateAvantSplit;
-        System.out.println(query);
         try {
-
             rs = stmt.executeQuery(query);
-
-
-
             int count = 0;
             while (rs.next()) {
                 tension = rs.getInt("V");
@@ -133,18 +149,12 @@ public class Classe_communiquant_vers_BDD implements Runnable{
                     tabRes[count][0] = tension;
                     tabRes[count][1] = battery_current;
                     tabRes[count][2] = max_power_today;
-                    System.out.println(tabRes[count][0]);
                     count++;
                 }
-
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-        //return tabRes;
     }
-
-
 }

@@ -10,6 +10,8 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by ThomasSIM-ASUS on 20/03/2018.
  */
@@ -18,23 +20,44 @@ public class activity_mainmenu extends Activity {
 
     // Liens sur composants graphiques d'IHM
     private Button bt_afficher_conso, bt_redemmarrage;
-    private Switch sw_etat_fontaine, sw_etat_eclairage;
-    //TextView tv_test;
+    private Switch sw_etat_pompe, sw_etat_eclairage;
 
-    private String etat_pompe = "";
-    private String etat_eclairage = "";
+    private String etat_pompe;
+    private String etat_eclairage;
 
 
     // Création d'objets
     private SmsManager ref_smsManager = SmsManager.getDefault();
+    private Classe_communiquant_vers_BDD ref_Classe_BDD;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+//        Utilisateur ref_utilisateur;
+//        Thread ref_thread;
+//
+//        // Liens sur les classes métiers
+//
+//        // Création d'objets
+//        ref_utilisateur = new Utilisateur();
+//        ref_thread = new Thread(ref_Classe_BDD);
+//
+//
+//
+//        // Connexion à la BDD
+//        ref_Classe_BDD.initConnection("v-vaudey_fontaine_bdd",ref_utilisateur);
+//
+//        ref_thread.start();
+//
+//        while (ref_thread.isAlive());
+
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_mainmenu);
 
         // Etablir un lien entre identifiant de composant d'IHM et le composant graphique
-        sw_etat_fontaine = findViewById(R.id.sw_etat_fontaine);
+        sw_etat_pompe = findViewById(R.id.sw_etat_fontaine);
         sw_etat_eclairage = findViewById(R.id.sw_etat_eclairage);
         bt_afficher_conso = findViewById(R.id.bt_afficher_conso);
         bt_redemmarrage = findViewById(R.id.bt_redemarrage);
@@ -43,7 +66,27 @@ public class activity_mainmenu extends Activity {
 
         // Vérification de l'état de la fontaine par SMS
         //ref_smsManager.sendTextMessage("+33769691960",null, "etat fontaine", null,null);
+        //try {
+//            //TimeUnit.SECONDS.sleep(2);
+//            etat_pompe = ref_Classe_BDD.etat_pompe_str;
+//            etat_eclairage = ref_Classe_BDD.etat_eclairage_str;
+//            if (etat_pompe == "allume"){
+//                sw_etat_pompe.toggle();
+//            }
+//            else{
+////                Toast.makeText(this, "échec de la synchronisation de l'état de la pompe", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            if (etat_eclairage == "allume"){
+//                sw_etat_eclairage.toggle();
+//            }
+//            else{
+////                Toast.makeText(this, "échec de la synchronisation de l'état de l'éclairage", Toast.LENGTH_SHORT).show();
+//            }
 
+        //} catch (InterruptedException e) {
+            //e.printStackTrace();
+        //}
 
 
         // affiche l'IHM contenant le graphique des consommations d'eau, d'électricité, ainsi que le niveau de batterie
@@ -56,7 +99,7 @@ public class activity_mainmenu extends Activity {
         });
 
         // envoi de la commande d'allumage / extinction de la fontaine
-        sw_etat_fontaine.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        sw_etat_pompe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
@@ -107,6 +150,13 @@ public class activity_mainmenu extends Activity {
 //    }
 
 
+    public void setLienMenuToSGBD(Classe_communiquant_vers_BDD classe_communiquant_vers_bdd)
+
+    {
+
+        this.ref_Classe_BDD = classe_communiquant_vers_bdd;
+
+    }
 
 
 }

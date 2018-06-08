@@ -18,8 +18,6 @@ public class MainActivity extends AppCompatActivity {
     // Création des objets composés : relation de composition
     Classe_communiquant_vers_BDD ref_Classe_BDD = new Classe_communiquant_vers_BDD();
 
-    //Connecteur_SGBD ref_Connecteur_SGBD = new Connecteur_SGBD();
-
     // Attributs
     private String identifiant;
     private String passwd;
@@ -87,20 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Identifiant et / ou mot de passe incorrect", Toast.LENGTH_SHORT).show();
                     }
                 }
-
-//                reponse_serv.setText(bdd.getResultat());
-
-//                reponse_sql.setText(bdd.getResultat2());
-
-//                tv_test.setText(bdd.getNom());
-
-
             }
         });
-
-
-
-
-
     }
 }

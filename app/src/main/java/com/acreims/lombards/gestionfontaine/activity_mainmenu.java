@@ -25,6 +25,7 @@ public class activity_mainmenu extends Activity {
     // Création d'objets
     private SmsManager ref_smsManager = SmsManager.getDefault();
 
+    // Todo : demander l'état de la pompe et de l'éclairage lors de la connexion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

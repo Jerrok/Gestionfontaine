@@ -9,11 +9,8 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
-
-import static com.github.mikephil.charting.utils.ColorTemplate.JOYFUL_COLORS;
 
 public class activity_graph extends Activity {
 
@@ -27,13 +24,11 @@ public class activity_graph extends Activity {
         int rouge = res.getColor(R.color.red);
         int bleu = res.getColor(R.color.blue);
         int vert = res.getColor(R.color.vert);
-//        Random random = new Random();
+
         ref_Classe_BDD = new Classe_communiquant_vers_BDD();
 
         Utilisateur ref_utilisateur;
         Thread ref_thread;
-
-        // Liens sur les classes métiers
 
         // Création d'objets
         ref_utilisateur = new Utilisateur();
@@ -49,7 +44,6 @@ public class activity_graph extends Activity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_graph);
 
-        //ref_Classe_BDD.voir_tension();
         // Création du tableau contenant les différents tableaux de valeurs
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
 
@@ -59,7 +53,6 @@ public class activity_graph extends Activity {
         ArrayList<Entry> MaxPowerToday = new ArrayList<>();
         int i = 0;
         float f = 1f;
-        //int i2 = (random.nextInt(100 - 0 + 1)+1);  // rend les valeurs de la variable aléatoires
         while (i != 30)
         {
             MainVoltage.add(new Entry(f, ref_Classe_BDD.tabRes[i][0]));
@@ -67,18 +60,7 @@ public class activity_graph extends Activity {
             MaxPowerToday.add(new Entry(f, ref_Classe_BDD.tabRes[i][2]));
             i++;
             f++;
-            //i2 = (random.nextInt(100 - 0 + 1)+1);
         }
-
-
-        // Création du tableau de valeurs (valeurs de type "float") --> consommation d'électricité ici
-//        ArrayList<Entry> entries2 = new ArrayList<>();
-//        entries2.add(new Entry(1f,20));
-//        entries2.add(new Entry(2f,15));
-//        entries2.add(new Entry(3f,10));
-//        entries2.add(new Entry(4f,10));
-//        entries2.add(new Entry(5f,30));
-//        entries2.add(new Entry(6f,50));
 
         LineDataSet Tension_principale = new LineDataSet(MainVoltage, "Tension principale");
         Tension_principale.setColor(rouge);
@@ -89,13 +71,10 @@ public class activity_graph extends Activity {
         LineDataSet Puissance_maximum = new LineDataSet(MaxPowerToday, "Puissance max/jour");
         Puissance_maximum.setColor(vert);
 
-        // Ajout du tableau de consommation d'eau
+        // Ajout des tableau de d'entrées de valeurs
         dataSets.add(Tension_principale);
         dataSets.add(Courrant_batterie);
         dataSets.add(Puissance_maximum);
-
-        // Ajout du tableau de consommation d'électricité
-//        dataSets.add(new LineDataSet(entries2, "Consommation d'électricité"));
 
         // Appel du composant graphique d'IHM "LineChart"
         LineChart chart = findViewById(R.id.chart);
@@ -103,7 +82,6 @@ public class activity_graph extends Activity {
         // Création des lignes et utilisation dans le composant graphique d'IHM
         LineData data = new LineData(dataSets);
         chart.setData(data);
-
 
     }
 

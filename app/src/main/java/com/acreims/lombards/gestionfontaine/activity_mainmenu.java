@@ -17,15 +17,16 @@ import android.widget.Toast;
 public class activity_mainmenu extends Activity {
 
     // Liens sur composants graphiques d'IHM
-    Button bt_afficher_conso, bt_redemmarrage;
-    Switch sw_etat_fontaine, sw_etat_eclairage;
+    private Button bt_afficher_conso, bt_redemmarrage;
+    private Switch sw_etat_fontaine, sw_etat_eclairage;
     //TextView tv_test;
 
-    String etat_fontaine = "";
+    private String etat_pompe = "";
+    private String etat_eclairage = "";
 
 
     // Création d'objets
-    SmsManager ref_smsManager = SmsManager.getDefault();
+    private SmsManager ref_smsManager = SmsManager.getDefault();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -11,8 +11,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     // Liens sur composants graphiques d'IHM
-    EditText et_identifiant, et_passwd;
-    Button bt_connexion;
+    private EditText et_identifiant, et_passwd;
+    private Button bt_connexion;
 
 
     // Création des objets composés : relation de composition
@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
     //Connecteur_SGBD ref_Connecteur_SGBD = new Connecteur_SGBD();
 
     // Attributs
-    public String identifiant;
-    public String passwd;
+    private String identifiant;
+    private String passwd;
     private String resultat;
 
     // Méthode : point d'entrée exécution de l'IHM

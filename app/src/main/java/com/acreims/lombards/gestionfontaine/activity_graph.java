@@ -1,6 +1,7 @@
 package com.acreims.lombards.gestionfontaine;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -8,18 +9,24 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
-import java.util.Random;
+
+import static com.github.mikephil.charting.utils.ColorTemplate.JOYFUL_COLORS;
 
 public class activity_graph extends Activity {
 
     private Classe_communiquant_vers_BDD ref_Classe_BDD;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        Resources res = getResources();
+        int rouge = res.getColor(R.color.red);
+        int bleu = res.getColor(R.color.blue);
+        int vert = res.getColor(R.color.vert);
 //        Random random = new Random();
         ref_Classe_BDD = new Classe_communiquant_vers_BDD();
 
@@ -74,13 +81,18 @@ public class activity_graph extends Activity {
 //        entries2.add(new Entry(6f,50));
 
         LineDataSet Tension_principale = new LineDataSet(MainVoltage, "Tension principale");
-        Tension_principale.setColor();
+        Tension_principale.setColor(rouge);
+
+        LineDataSet Courrant_batterie = new LineDataSet(BatteryCurrent, "Courant de batterie");
+        Courrant_batterie.setColor(bleu);
+
+        LineDataSet Puissance_maximum = new LineDataSet(MaxPowerToday, "Puissance max/jour");
+        Puissance_maximum.setColor(vert);
 
         // Ajout du tableau de consommation d'eau
         dataSets.add(Tension_principale);
-        dataSets.add(new LineDataSet(BatteryCurrent, "Courant de batterie"));
-        dataSets.add(new LineDataSet(MaxPowerToday, "Puissance max/jour"));
-        MainVoltage.
+        dataSets.add(Courrant_batterie);
+        dataSets.add(Puissance_maximum);
 
         // Ajout du tableau de consommation d'électricité
 //        dataSets.add(new LineDataSet(entries2, "Consommation d'électricité"));

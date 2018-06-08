@@ -30,7 +30,6 @@ public class Classe_communiquant_vers_BDD implements Runnable{
     private Statement stmt;
     private Connection connection;
     private ResultSet rs;
-    private activity_graph graph;
 
     // Constructeur
     public Classe_communiquant_vers_BDD() {
@@ -67,8 +66,8 @@ public class Classe_communiquant_vers_BDD implements Runnable{
             act.setLienGraphToSGBD(this);
 
             Class.forName("com.mysql.jdbc.Driver");
-            connection = (Connection) DriverManager.getConnection(url, "v-vaudey", "fontaine");
-            stmt = (Statement) connection.createStatement();
+            connection = DriverManager.getConnection(url, "v-vaudey", "fontaine");
+            stmt = connection.createStatement();
 
             String query = "SELECT `identifiant`, `mdp` from `user`";
 
@@ -97,17 +96,19 @@ public class Classe_communiquant_vers_BDD implements Runnable{
                 }
 
             }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
 
-        voir_tension();
+        voir_donnees_regulateur();
 
     }
 
-    public void voir_tension(){
+//    public boolean voir_etat_pompe_eclairage(){
+//
+//    }
+
+    private void voir_donnees_regulateur(){
 
         String query = "SELECT `V`,`I`,`H21`,`Date` FROM `solaire` ORDER BY `Date` asc limit 300";
         int tension, battery_current, max_power_today;
@@ -145,12 +146,5 @@ public class Classe_communiquant_vers_BDD implements Runnable{
         //return tabRes;
     }
 
-    public void setLienSGBDtoGraph(activity_graph graph)
-
-    {
-
-        this.graph = graph;
-
-    }
 
 }

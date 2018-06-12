@@ -116,7 +116,7 @@ public class Classe_communiquant_vers_BDD implements Runnable{
     private void voir_donnees_fontaine() {
         String query = "SELECT `etat_pompe`, `etat_eclairage` FROM `etat_fontaine`";
 
-        
+
 
         try {
             rs = stmt.executeQuery(query);

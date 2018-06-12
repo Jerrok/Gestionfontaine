@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="t.simoes" />
+            android:text="" />
 
         <TextView
             android:id="@+id/tv_passwd"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword"
-            android:text="t1234" />
+            android:text="" />
 
         <Button
             android:id="@+id/bt_connexion"

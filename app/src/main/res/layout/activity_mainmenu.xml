@@ -38,10 +38,10 @@
             android:layout_margin="10pt" />
 
         <Switch
-            android:id="@+id/sw_etat_fontaine"
+            android:id="@+id/sw_etat_pompe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Etat fontaine :" />
+            android:text="Etat pompe :" />
 
         <Space
             android:layout_width="match_parent"

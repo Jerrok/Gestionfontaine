@@ -31,7 +31,7 @@ public class activity_mainmenu extends Activity {
         this.setContentView(R.layout.activity_mainmenu);
 
         // Etablir un lien entre identifiant de composant d'IHM et le composant graphique
-        sw_etat_pompe = findViewById(R.id.sw_etat_fontaine);
+        sw_etat_pompe = findViewById(R.id.sw_etat_pompe);
         sw_etat_eclairage = findViewById(R.id.sw_etat_eclairage);
         bt_afficher_conso = findViewById(R.id.bt_afficher_conso);
         bt_redemmarrage = findViewById(R.id.bt_redemarrage);

@@ -108,6 +108,7 @@ public class Classe_communiquant_vers_BDD implements Runnable{
             e.printStackTrace();
         }
 
+
         voir_donnees_regulateur();
         voir_donnees_fontaine();
 

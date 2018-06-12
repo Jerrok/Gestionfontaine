@@ -3,6 +3,7 @@ package com.acreims.lombards.gestionfontaine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         et_passwd = findViewById(R.id.et_passwd);
         bt_connexion = findViewById(R.id.bt_connexion);
 
-
+        SmsManager ref_smsManager = SmsManager.getDefault();
+        ref_smsManager.sendTextMessage("+33769691960",null,"etat fontaine",null,null);
 
         bt_connexion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 // Liens sur des classes de librairies
                 Utilisateur ref_utilisateur;
                 Thread ref_thread;
+
 
                 // Liens sur les classes métiers
 
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 resultat = ref_Classe_BDD.getResultat_identifiant();
 
                 if (resultat.contentEquals("connecté")) {
+
                     Toast.makeText(MainActivity.this, "Vous êtes connecté", Toast.LENGTH_SHORT).show();
 
                     // Démarre la deuxième interface graphique

@@ -38,7 +38,7 @@ public class activity_mainmenu extends Activity {
 
 
         //mise a jour des switches avec acces à la bdd
-        ref_smsManager.sendTextMessage("+33769691960",null,"etat fontaine",null,null);
+
 
         Classe_communiquant_vers_BDD ref_Classe_BDD = new Classe_communiquant_vers_BDD();
         Thread ref_thread;

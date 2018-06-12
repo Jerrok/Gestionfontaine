@@ -13,7 +13,7 @@ import java.sql.Statement;
 
 public class Classe_communiquant_vers_BDD implements Runnable{
 
-    // Attributs
+    // Attributsùù
     public int[][] tabRes   = new int[30][3];
     private  String url;
     private  String log;
@@ -24,7 +24,16 @@ public class Classe_communiquant_vers_BDD implements Runnable{
     private  boolean resultat_nom;
     private  boolean resultat_passwd;
 
+    private String etat_pompe,etat_eclairage;
 
+    public String getEtat_eclairage() {
+        return etat_eclairage;
+    }
+
+    public String getEtat_pompe() {
+
+        return etat_pompe;
+    }
 
     private activity_graph act = new activity_graph();
 
@@ -43,7 +52,6 @@ public class Classe_communiquant_vers_BDD implements Runnable{
 
     // Mutateurs et accesseur
     public String getResultat_identifiant() {
-
         return resultat_identifiant;
     }
 
@@ -101,7 +109,27 @@ public class Classe_communiquant_vers_BDD implements Runnable{
         }
 
         voir_donnees_regulateur();
+        voir_donnees_fontaine();
 
+    }
+
+    private void voir_donnees_fontaine() {
+        String query = "SELECT `etat_pompe`, `etat_eclairage` FROM `etat_fontaine`";
+
+        
+
+        try {
+            rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                etat_pompe = rs.getString("etat_pompe");
+                etat_eclairage = rs.getString("etat_eclairage");
+                System.out.println("boucle");
+            }
+            System.out.println("etat_pompe : "+etat_pompe);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void voir_donnees_regulateur(){

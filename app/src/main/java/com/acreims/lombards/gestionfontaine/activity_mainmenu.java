@@ -37,6 +37,30 @@ public class activity_mainmenu extends Activity {
         bt_redemmarrage = findViewById(R.id.bt_redemarrage);
 
 
+        //mise a jour des switches avec acces à la bdd
+        ref_smsManager.sendTextMessage("+33769691960",null,"etat fontaine",null,null);
+
+        Classe_communiquant_vers_BDD ref_Classe_BDD = new Classe_communiquant_vers_BDD();
+        Thread ref_thread;
+
+        // Création d'objets
+        Utilisateur ref_utilisateur = new Utilisateur();
+        ref_thread = new Thread(ref_Classe_BDD);
+        ref_Classe_BDD.initConnection("v-vaudey_fontaine_bdd",ref_utilisateur);
+
+        ref_thread.start();
+
+        while (ref_thread.isAlive());
+
+        String etat_pompe = ref_Classe_BDD.getEtat_pompe();
+        String etat_eclairage = ref_Classe_BDD.getEtat_eclairage();
+
+        if (etat_pompe.equals("allume"))
+            sw_etat_pompe.toggle();
+        if (etat_eclairage.equals("allume"))
+            sw_etat_eclairage.toggle();
+
+
         // affiche l'IHM contenant le graphique des consommations d'eau, d'électricité, ainsi que le niveau de batterie
         bt_afficher_conso.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,28 +110,7 @@ public class activity_mainmenu extends Activity {
         });
 
 
-        //mise a jour des switches avec acces à la bdd
-        Classe_communiquant_vers_BDD ref_Classe_BDD = new Classe_communiquant_vers_BDD();
-        Thread ref_thread;
 
-        // Liens sur les classes métiers
-
-        // Création d'objets
-        Utilisateur ref_utilisateur = new Utilisateur();
-        ref_thread = new Thread(ref_Classe_BDD);
-        ref_Classe_BDD.initConnection("v-vaudey_fontaine_bdd",ref_utilisateur);
-
-        ref_thread.start();
-
-        while (ref_thread.isAlive());
-
-        String etat_pompe = ref_Classe_BDD.getEtat_pompe();
-        String etat_eclairage = ref_Classe_BDD.getEtat_eclairage();
-
-        if (etat_pompe.equals("allume"))
-            sw_etat_pompe.toggle();
-        if (etat_eclairage.equals("allume"))
-            sw_etat_eclairage.toggle();
 
     }
 }
